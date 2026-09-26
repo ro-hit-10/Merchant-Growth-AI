@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+
+# Python venv — never commit, recreate with: python -m venv venv
+server/venv/
+__pycache__/
+*.pyc
+
+# server runtime state — regenerated on first run, never commit demo data
+server/data-store/db.json
+
+.env
+.env.local
+*.log
+.DS_Store
+Thumbs.db

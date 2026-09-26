@@ -1,0 +1,55 @@
+{
+  "working_capital_loan": {
+    "eligibility_criteria": {
+      "min_months_on_platform": 6,
+      "min_avg_monthly_settlement_inr": 50000,
+      "min_settlement_consistency_score": 0.7
+    },
+    "tiers": [
+      {
+        "tier": "Bronze",
+        "min_avg_monthly_settlement_inr": 50000,
+        "max_loan_inr": 50000,
+        "indicative_interest_rate_pct": 19.5,
+        "tenure_months": 6
+      },
+      {
+        "tier": "Silver",
+        "min_avg_monthly_settlement_inr": 150000,
+        "max_loan_inr": 200000,
+        "indicative_interest_rate_pct": 17.0,
+        "tenure_months": 9
+      },
+      {
+        "tier": "Gold",
+        "min_avg_monthly_settlement_inr": 300000,
+        "max_loan_inr": 500000,
+        "indicative_interest_rate_pct": 15.0,
+        "tenure_months": 12
+      }
+    ],
+    "auto_approve_threshold_inr": 100000,
+    "escalate_to_relationship_manager_above_inr": 200000,
+    "partner": "Mock NBFC Partner API (simulates Paytm's asset-light bank/NBFC distribution model)"
+  },
+  "merchant_insurance": {
+    "products": [
+      {
+        "name": "Shop Protect (fire & theft)",
+        "eligibility": "any merchant with physical storefront, min 3 months on platform",
+        "indicative_annual_premium_inr": 2400
+      },
+      {
+        "name": "Health Cover for Merchant + Family",
+        "eligibility": "any merchant, min 1 month on platform",
+        "indicative_annual_premium_inr": 6000
+      }
+    ]
+  },
+  "escalation_rules": [
+    "Escalate to human relationship manager if requested loan amount > INR 200,000",
+    "Escalate if settlement_consistency_score < 0.8 regardless of amount",
+    "Escalate if merchant has not accepted a financial product offer twice before (avoid repeat-nudge fatigue)",
+    "Never auto-submit an application without explicit one-tap merchant consent"
+  ]
+}

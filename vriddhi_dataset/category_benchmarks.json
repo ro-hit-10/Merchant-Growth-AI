@@ -1,0 +1,61 @@
+{
+  "apparel_sarees": {
+    "expected_weekday_to_weekend_ratio": 0.85,
+    "note": "Weekday sales are normally about 85% of weekend sales for saree/apparel retailers in tier-2 cities. A ratio below 0.65 for 2+ consecutive weeks indicates an anomaly worth flagging, not seasonal noise.",
+    "typical_avg_ticket_inr": 2200,
+    "seasonal_peaks": [
+      "Diwali (Oct-Nov)",
+      "Wedding season (Nov-Feb)",
+      "Onam/Pongal regional peaks"
+    ],
+    "common_causes_of_weekday_dip": [
+      "New competitor offer nearby",
+      "Reduced footfall due to local construction/roadwork",
+      "Stock gap in a popular price band",
+      "Lapsed repeat-customer outreach"
+    ]
+  },
+  "grocery_kirana": {
+    "expected_weekday_to_weekend_ratio": 0.95,
+    "note": "Kirana demand is fairly flat across the week since it serves daily essentials; a >20% single-day drop usually means a stockout of a high-frequency SKU, not demand softness.",
+    "typical_avg_ticket_inr": 300,
+    "seasonal_peaks": [
+      "Festival stocking (1-2 weeks before Diwali)",
+      "Month-start salary cycle (1st-5th)"
+    ],
+    "common_causes_of_weekday_dip": [
+      "Stockout of a top-selling SKU",
+      "Local vendor competition",
+      "Price hike on staples"
+    ]
+  },
+  "food_qsr": {
+    "expected_weekday_to_weekend_ratio": 0.8,
+    "note": "QSR volumes peak on weekends and evenings; a healthy outlet sees 25-40% of monthly revenue in a compact evening window (7-9pm).",
+    "typical_avg_ticket_inr": 260,
+    "seasonal_peaks": [
+      "Exam season (student areas)",
+      "IPL/cricket season",
+      "Monsoon (delivery spike)"
+    ],
+    "common_causes_of_weekday_dip": [
+      "Delivery platform outage",
+      "New nearby competitor",
+      "Menu item stockout"
+    ]
+  },
+  "salon_wellness": {
+    "expected_weekday_to_weekend_ratio": 0.55,
+    "note": "Salons are heavily weekend and appointment-driven; weekday utilization below 40% of capacity is normal, but a sudden drop in repeat-customer visit frequency is the metric that matters more than daily revenue.",
+    "typical_avg_ticket_inr": 900,
+    "seasonal_peaks": [
+      "Wedding season (Nov-Feb)",
+      "Festive season (Sep-Nov)"
+    ],
+    "common_causes_of_weekday_dip": [
+      "Staff attrition",
+      "Appointment booking friction",
+      "Lapsed loyalty outreach"
+    ]
+  }
+}

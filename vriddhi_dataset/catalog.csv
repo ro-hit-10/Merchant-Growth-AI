@@ -1,0 +1,21 @@
+merchant_id,item_id,item_name,price_inr,stock_qty,reorder_threshold,last_restocked_date,units_sold_last_30d
+M001,ITM-001,Banarasi Silk Saree,4200,18,5,2026-08-30,22
+M001,ITM-002,Cotton Handloom Saree,1450,32,10,2026-09-10,41
+M001,ITM-003,Chiffon Printed Saree,1100,27,8,2026-09-05,35
+M001,ITM-004,Kanjivaram Silk Saree,6800,9,4,2026-08-20,11
+M001,ITM-005,Georgette Party Wear Saree,2100,14,6,2026-09-15,19
+M001,ITM-006,Embroidered Dupatta,650,40,12,2026-09-18,28
+M002,ITM-101,Tata Salt 1kg,28,6,40,2026-09-12,210
+M002,ITM-102,Aashirvaad Atta 5kg,265,4,25,2026-09-08,96
+M002,ITM-103,Fortune Sunflower Oil 1L,155,38,20,2026-09-20,88
+M002,ITM-104,Maggi Noodles (12-pack),144,22,15,2026-09-19,130
+M002,ITM-105,Amul Milk 1L (crate of 12),660,15,10,2026-09-24,300
+M002,ITM-106,Parle-G Biscuits (24-pack),240,52,15,2026-09-21,140
+M003,ITM-201,Chicken Biryani (family pack),380,999,0,n/a,410
+M003,ITM-202,Paneer Butter Masala,220,999,0,n/a,260
+M003,ITM-203,Masala Dosa,90,999,0,n/a,520
+M003,ITM-204,Cold Coffee,110,999,0,n/a,300
+M004,ITM-301,Haircut & Styling,400,999,0,n/a,180
+M004,ITM-302,Hair Spa,1200,999,0,n/a,60
+M004,ITM-303,Facial - Gold,1800,999,0,n/a,45
+M004,ITM-304,Bridal Makeup Package,8500,999,0,n/a,6

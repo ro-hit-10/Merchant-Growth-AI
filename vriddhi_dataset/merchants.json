@@ -1,0 +1,73 @@
+[
+  {
+    "merchant_id": "M001",
+    "name": "Meera Sarees",
+    "category": "apparel_sarees",
+    "city": "Surat",
+    "state": "Gujarat",
+    "onboarded_date": "2023-02-14",
+    "soundbox_id": "SB-77291",
+    "qr_id": "QR-40213",
+    "avg_monthly_settlement_inr": 185000,
+    "settlement_consistency_score": 0.91,
+    "existing_paytm_products": [
+      "Soundbox",
+      "QR",
+      "Business App"
+    ],
+    "notes": "PRIMARY DEMO MERCHANT \u2014 has an engineered 3-week weekday sales dip ending on demo date. Use this merchant for the main walkthrough."
+  },
+  {
+    "merchant_id": "M002",
+    "name": "Sharma Kirana Store",
+    "category": "grocery_kirana",
+    "city": "Lucknow",
+    "state": "Uttar Pradesh",
+    "onboarded_date": "2021-07-01",
+    "soundbox_id": "SB-51042",
+    "qr_id": "QR-11987",
+    "avg_monthly_settlement_inr": 260000,
+    "settlement_consistency_score": 0.97,
+    "existing_paytm_products": [
+      "Soundbox",
+      "QR",
+      "POS"
+    ],
+    "notes": "Stable merchant, used to demonstrate the restock / low-stock flow (fast-moving item running low)."
+  },
+  {
+    "merchant_id": "M003",
+    "name": "Spice Junction QSR",
+    "category": "food_qsr",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "onboarded_date": "2022-11-20",
+    "soundbox_id": "SB-88120",
+    "qr_id": "QR-90544",
+    "avg_monthly_settlement_inr": 410000,
+    "settlement_consistency_score": 0.88,
+    "existing_paytm_products": [
+      "Soundbox",
+      "QR",
+      "Business App"
+    ],
+    "notes": "Growing merchant, used to demonstrate the financial nudge (working-capital loan eligibility) flow."
+  },
+  {
+    "merchant_id": "M004",
+    "name": "Glow Up Salon",
+    "category": "salon_wellness",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "onboarded_date": "2024-01-05",
+    "soundbox_id": "SB-63311",
+    "qr_id": "QR-22456",
+    "avg_monthly_settlement_inr": 95000,
+    "settlement_consistency_score": 0.79,
+    "existing_paytm_products": [
+      "QR",
+      "Business App"
+    ],
+    "notes": "Newer, lower-consistency merchant \u2014 used to show the escalation-to-human path (below lending threshold, flagged for RM review instead of auto nudge)."
+  }
+]

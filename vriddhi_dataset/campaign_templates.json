@@ -1,0 +1,53 @@
+{
+  "sales_dip_recovery_promo": {
+    "channel": "WhatsApp Business API",
+    "trigger": "weekday_sales_dip_detected",
+    "template": "Hi {customer_name}! \ud83d\udc4b {merchant_name} misses you. Enjoy {discount_pct}% off on {item_name} this week only. Visit us or reply to this message to reserve yours. Valid till {expiry_date}.",
+    "variables": [
+      "customer_name",
+      "merchant_name",
+      "discount_pct",
+      "item_name",
+      "expiry_date"
+    ],
+    "guardrails": [
+      "discount_pct must not exceed merchant's configured max_discount_pct (default 15%)",
+      "max 1 promo per customer per 14 days"
+    ]
+  },
+  "restock_reminder_to_merchant": {
+    "channel": "Paytm Merchant App notification",
+    "trigger": "low_stock_detected",
+    "template": "{item_name} is running low ({stock_qty} left, sells ~{avg_daily_units}/day). Reorder now to avoid a stockout in ~{days_to_stockout} days.",
+    "variables": [
+      "item_name",
+      "stock_qty",
+      "avg_daily_units",
+      "days_to_stockout"
+    ]
+  },
+  "loan_eligibility_nudge": {
+    "channel": "Paytm Merchant App + AI Soundbox voice prompt",
+    "trigger": "lending_eligibility_confirmed",
+    "template": "Based on your last {lookback_months} months of settlements, you're pre-approved for a working capital loan of up to \u20b9{max_loan_inr} at {interest_rate}% for {tenure_months} months. Tap to apply \u2014 no paperwork needed.",
+    "variables": [
+      "lookback_months",
+      "max_loan_inr",
+      "interest_rate",
+      "tenure_months"
+    ],
+    "guardrails": [
+      "Never shown more than once per 30 days to the same merchant",
+      "Requires explicit one-tap consent before any application is submitted"
+    ]
+  },
+  "customer_service_autoreply": {
+    "channel": "WhatsApp / Paytm chat",
+    "trigger": "common_query_detected",
+    "templates": {
+      "store_hours": "{merchant_name} is open {open_time}\u2013{close_time}, {days_open}.",
+      "order_status": "Your order #{order_id} is {status}. Expected by {eta}.",
+      "return_policy": "{merchant_name}'s return window is {return_days} days with original receipt."
+    }
+  }
+}
