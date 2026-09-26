@@ -20,5 +20,5 @@ def get_llm():
         raise MissingApiKeyError(
             "GOOGLE_API_KEY is not set. Add it to server/.env (GOOGLE_API_KEY=your-key) and restart the server."
         )
-    model_name = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash").strip() or "gemini-2.0-flash"
+    model_name = os.environ.get("GEMINI_MODEL", "gemini-3.1-flash-lite").strip() or "gemini-3.1-flash-lite"
     return ChatGoogleGenerativeAI(model=model_name, google_api_key=api_key, temperature=0.2)
