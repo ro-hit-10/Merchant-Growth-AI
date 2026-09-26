@@ -48,19 +48,24 @@ This diagram is the target design; the table below is the honest mapping of **wh
 
 Two entry points share one graph:
 
-```
-                          ┌─────────────────────────────────────┐
-                          │      agent_graph.py  (LangGraph)     │
-   scheduled scan  ──────▶│                                     │
-   (orchestrator_graph.py)│   ┌────────┐        ┌────────────┐  │
-                          │   │  llm   │◀──────▶│   tools    │  │
-   merchant chat message ─▶   │ (Gemini│  loop   │ (whichever │  │
-   (chat_graph.py)        │   │ +tools)│         │  are bound)│  │
-                          │   └────────┘        └────────────┘  │
-                          │        │ stops calling tools          │
-                          └────────┼───────────────────────────┘
-                                   ▼
-                          final natural-language answer
+```mermaid
+flowchart LR
+    SCAN["Scheduled scan<br/><code>orchestrator_graph.py</code><br/>binds 8 diagnostic tools"]
+    CHAT["Merchant chat message<br/><code>chat_graph.py</code><br/>binds all 14 tools"]
+
+    subgraph GRAPH["agent_graph.py — LangGraph StateGraph"]
+        direction LR
+        LLM["<b>llm node</b><br/>Gemini + bound tools"]
+        TOOLS["<b>tools node</b><br/>executes whichever<br/>tool(s) Gemini called"]
+        LLM -- "tool_calls" --> TOOLS
+        TOOLS -- "ToolMessage results" --> LLM
+    end
+
+    ANSWER(["Final natural-language answer"])
+
+    SCAN --> LLM
+    CHAT --> LLM
+    LLM -- "no more tool calls" --> ANSWER
 ```
 
 - **The scheduled scan** binds the 8 read-only diagnostic tools and asks Gemini to build a complete picture of the merchant — sales health, slow movers, stock, upcoming festivals, loan/insurance eligibility, feedback — in whatever order it judges useful, then approve/dismiss cards render in the Dashboard from whatever it drafted.
