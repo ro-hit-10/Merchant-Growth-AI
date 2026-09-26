@@ -24,6 +24,7 @@ This is a genuine multi-agent, RAG-grounded, LLM-tool-calling system — not a s
 - [Project structure](#project-structure)
 - [Setup](#setup)
 - [Running](#running)
+- [Deployment](#deployment)
 - [Demo script](#demo-script)
 - [Data](#data)
 - [Known limitations](#known-limitations)
@@ -190,6 +191,27 @@ cd web && npm run dev
 ```
 
 Open http://localhost:5173. FastAPI's interactive docs are at http://localhost:4000/docs.
+
+## Deployment
+
+The frontend and backend deploy separately — Vercel is built for static/serverless frontends, not for a long-running Python process with local file-based state, so the backend goes on Render instead of being forced into Vercel's serverless model.
+
+### Backend → Render
+
+1. Push this repo to GitHub (already done if you're reading this on GitHub).
+2. In the [Render dashboard](https://dashboard.render.com/), **New → Blueprint**, connect this repo. Render reads `render.yaml` at the repo root and provisions the service automatically (Python, free plan, `server/` as root, correct build/start commands already filled in).
+3. Set the one required secret it doesn't already know — `GOOGLE_API_KEY` — in the service's **Environment** tab. `GEMINI_MODEL` and `GEMINI_EMBEDDING_MODEL` are pre-filled with sensible defaults in `render.yaml`; override them there if you want a different model.
+4. Deploy. Note the public URL Render gives you (`https://<your-service>.onrender.com`).
+
+**Free-tier caveat**: Render's free web services spin down after ~15 minutes of inactivity and spin back up on the next request (with a ~30-60s cold-start delay). The disk is ephemeral across that respin, so the JSON-file store (audit log, chat memory, pending/active offers) resets to empty when the service has been idle — state persists perfectly within any continuous session, it just doesn't survive a long idle gap on the free tier. Upgrading to a paid Render plan with a persistent disk removes this limitation entirely with no code changes.
+
+### Frontend → Vercel
+
+1. In the [Vercel dashboard](https://vercel.com/new), import this same GitHub repo. The root-level `vercel.json` tells Vercel how to build the `web/` app (Vercel doesn't need "Root Directory" set manually because of it).
+2. Add one environment variable in the project's **Settings → Environment Variables**: `VITE_API_BASE_URL` = `https://<your-render-service>.onrender.com/api` (the exact URL from the Render step above, with `/api` on the end). Vite bakes this in at build time, so it must be set *before* the first deploy — add it, then deploy/redeploy.
+3. Deploy. Vercel gives you a public `https://<project>.vercel.app` URL — that's the live app.
+
+No code changes are needed to redeploy either side later — `git push` to `main` and both platforms redeploy automatically once connected.
 
 ## Demo script
 

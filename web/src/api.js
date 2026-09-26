@@ -1,4 +1,9 @@
-const BASE = "/api";
+// In local dev, Vite's dev-only proxy (vite.config.js) forwards "/api" to
+// the backend, so the default works with no env var set. In production
+// (Vercel serves only the static build — no proxy exists there), this must
+// point at the deployed backend's public URL, e.g.
+// "https://vriddhi-backend.onrender.com/api".
+const BASE = import.meta.env.VITE_API_BASE_URL || "/api";
 
 async function request(path, options) {
   const res = await fetch(BASE + path, {
