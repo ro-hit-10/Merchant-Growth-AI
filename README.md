@@ -28,6 +28,7 @@ This is a genuine multi-agent, RAG-grounded, LLM-tool-calling system — not a s
 - [Demo script](#demo-script)
 - [Data](#data)
 - [Known limitations](#known-limitations)
+- [Demo video](#demo-video)
 
 ## System architecture
 
@@ -234,3 +235,9 @@ This is a hackathon prototype, not a production system:
 - Campaign/lending/insurance "partner APIs" are mocked (logged, guardrail-checked, but nothing actually sends a WhatsApp message or hits a bank)
 - State is a single JSON file, not a real database — fine for a demo, not for concurrent multi-instance deployment
 - No authentication — every endpoint is open, matching the hackathon's single-operator demo scope
+
+## Demo video
+
+[![Vriddhi demo video](https://img.youtube.com/vi/EaUyWhzTa58/maxresdefault.jpg)](https://youtu.be/EaUyWhzTa58)
+
+Full walkthrough: the dashboard, an automatic diagnostic scan catching the engineered sales dip, approving a drafted promo, the chat tab resolving free-text requests into real guardrail-checked actions, the restock and loan-escalation flows, and the audit trail. ▶ **[Watch on YouTube](https://youtu.be/EaUyWhzTa58)**
