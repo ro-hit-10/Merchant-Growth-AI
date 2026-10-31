@@ -13,6 +13,21 @@ class VectorStore:
         self.docs = []
         self._vectors = None
 
+    @classmethod
+    def from_precomputed(cls, embeddings_model, docs, vectors):
+        """Build a store from vectors computed offline (see
+        scripts/precompute_embeddings.py) instead of calling the embeddings
+        API — the static knowledge bases (category benchmarks, campaign
+        templates, lending rules, support KB) never change at runtime, so
+        there's no reason a cold start should pay for re-embedding them
+        with a live API call every time. `embeddings_model` is still
+        needed for embed_query() at search time (the query text is
+        dynamic and can't be precomputed)."""
+        store = cls(embeddings_model)
+        store.docs = list(docs)
+        store._vectors = np.array(vectors, dtype=np.float32)
+        return store
+
     def add_documents(self, docs):
         """docs: list of {"id": str, "text": str, "metadata": dict}"""
         if not docs:
