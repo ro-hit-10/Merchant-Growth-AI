@@ -14,6 +14,10 @@ Paytm merchants already have an AI assistant in their app — read-only, answers
 
 This is a genuine multi-agent, RAG-grounded, LLM-tool-calling system — not a state machine dressed up to look like one. Every number an agent states is read from the real dataset; every decision about *which* agent to invoke and *what* to say is made by Gemini, live.
 
+<a href="https://vriddhi-merchant-growth-ai.vercel.app/">
+  <img src="assets/scene-merchant.svg" alt="Vriddhi — merchant asks why sales dipped, the orchestrator routes through Insight, Growth Action, Ops, Service, and Financial Nudge agents under guardrails, merchant approves, action logged" width="100%">
+</a>
+
 ## Table of contents
 
 - [System architecture](#system-architecture)
