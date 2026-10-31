@@ -342,6 +342,26 @@ button.end:disabled { opacity: 0.6; cursor: not-allowed; }
   padding: 8px 0;
 }
 
+.scan-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #3a1b22;
+  border: 1px solid #5c2630;
+  color: #ffb4bd;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+.scan-error button.ghost {
+  padding: 4px 12px;
+  font-size: 12px;
+  color: #ffb4bd;
+  border-color: #5c2630;
+}
+
 /* ---------- Chat view ---------- */
 
 .view-chat {
@@ -416,6 +436,12 @@ button.end:disabled { opacity: 0.6; cursor: not-allowed; }
   background: #1a2636;
   color: #e4ebf5;
   border-bottom-left-radius: 3px;
+}
+
+.chat-bubble.vriddhi.error {
+  background: #3a1b22;
+  color: #ffb4bd;
+  border: 1px solid #5c2630;
 }
 
 @keyframes fadeIn {

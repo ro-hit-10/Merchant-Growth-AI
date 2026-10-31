@@ -1,9 +1,13 @@
+import logging
+
 from fastapi import APIRouter, HTTPException, Request
 
-from app.agents.llm import MissingApiKeyError
+from app.agents.llm import MissingApiKeyError, classify_google_error
 from app.agents.orchestrator_graph import run_orchestrator_scan
 from app.services.actions_service import dismiss_recommendation_action
 from app.store.db import db
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
@@ -19,6 +23,13 @@ def scan(merchant_id: str, request: Request):
         result = run_orchestrator_scan(merchant, data)
     except MissingApiKeyError as e:
         raise HTTPException(status_code=503, detail=str(e))
+    except Exception as e:
+        logger.exception("Unhandled error in /agent/scan/%s", merchant_id)
+        classified = classify_google_error(e)
+        if classified:
+            status_code, message = classified
+            raise HTTPException(status_code=status_code, detail=message)
+        raise HTTPException(status_code=500, detail="Something went wrong running the diagnostic scan. Please try again.")
 
     from datetime import datetime, timezone
 

@@ -28,7 +28,7 @@ export default function ChatPanel({ messages, onSend, busy }) {
         )}
         {messages.map((m, i) => (
           <div className={`chat-bubble-row ${m.role}`} key={i}>
-            <div className={`chat-bubble ${m.role}`}>{m.text}</div>
+            <div className={`chat-bubble ${m.role}${m.isError ? " error" : ""}`}>{m.text}</div>
           </div>
         ))}
         {busy && (

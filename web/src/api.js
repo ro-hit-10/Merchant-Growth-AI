@@ -12,7 +12,11 @@ async function request(path, options) {
   });
   const body = await res.json().catch(() => null);
   if (!res.ok) {
-    const err = new Error(body?.error || `Request failed: ${res.status}`);
+    // FastAPI's HTTPException serializes as {"detail": "..."}; a handful of
+    // our own endpoints use {"error": "..."} — check both before falling
+    // back to a generic message (e.g. the backend crashed with no JSON body
+    // at all, which .json() above already swallowed into body === null).
+    const err = new Error(body?.detail || body?.error || `Request failed: ${res.status}`);
     err.body = body;
     throw err;
   }

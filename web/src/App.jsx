@@ -20,6 +20,7 @@ export default function App() {
   const [results, setResults] = useState({});
   const [busyRecId, setBusyRecId] = useState(null);
   const [scanning, setScanning] = useState(false);
+  const [scanError, setScanError] = useState(null);
 
   const [auditEntries, setAuditEntries] = useState([]);
   const [showAudit, setShowAudit] = useState(false);
@@ -46,9 +47,12 @@ export default function App() {
   const runScan = useCallback(async (id) => {
     setScanning(true);
     setResults({});
+    setScanError(null);
     try {
       const result = await api.runScan(id);
       setRecommendations(result.recommendations);
+    } catch (err) {
+      setScanError(err.message);
     } finally {
       setScanning(false);
     }
@@ -60,6 +64,7 @@ export default function App() {
 
     setRecommendations([]);
     setResults({});
+    setScanError(null);
     setChatMessages([]);
     setView("dashboard");
 
@@ -198,6 +203,8 @@ export default function App() {
       // approve/end action — cheap enough to just always refresh so the
       // Dashboard is never stale when the merchant switches back to it.
       refreshCatalog(selectedId);
+    } catch (err) {
+      setChatMessages((prev) => [...prev, { role: "vriddhi", text: err.message, isError: true }]);
     } finally {
       setChatBusy(false);
     }
@@ -266,7 +273,13 @@ export default function App() {
 
             <div className="section-card span-2">
               <h2>Recommendations</h2>
-              {activeRecs.length === 0 && finishedRecs.length === 0 && (
+              {scanError && (
+                <div className="scan-error">
+                  ⚠ Scan failed: {scanError}
+                  <button className="ghost" onClick={() => runScan(selectedId)}>Retry</button>
+                </div>
+              )}
+              {!scanError && activeRecs.length === 0 && finishedRecs.length === 0 && (
                 <div className="empty-state">
                   {scanning ? "Scanning for opportunities…" : "No recommendations yet — run a diagnostic scan."}
                 </div>
